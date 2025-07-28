@@ -25,10 +25,17 @@ export const WeatherProvider = ({ children }) => {
   }, [city]);
 
   const handleChange = (e) => setSearch(e.target.value);
-  const searchByText = () => {
-    setCity(search);
-    setSearch('');
-  };
+const searchByText = () => {
+  const trimmed = search.trim();
+
+  if (!trimmed) {
+    alert("Please enter a city name.");
+    return;
+  }
+
+  setCity(trimmed);
+  setSearch('');
+};
 
   return (
     <WeatherContext.Provider value={{
